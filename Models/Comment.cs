@@ -1,10 +1,10 @@
 public class Comment
 {
-  public required string Id { get; set; }                                                  
-  public required string Slug { get; set; }                                                
-  public string? Author { get; set; }
-  public string? Email { get; set; }                                                       
-  public string? Message { get; set; }
-  public bool? Approved { get; set; }                                              
-  public DateTime? CreatedAt { get; set; }
+  public required string id { get; set; }                                                  
+  public required string slug { get; set; }                                                
+  public string? author { get; set; }
+  public string? email { get; set; }                                                       
+  public string? message { get; set; }
+  public bool? approved { get; set; }                                              
+  public DateTime createdon { get; set; }
 }
