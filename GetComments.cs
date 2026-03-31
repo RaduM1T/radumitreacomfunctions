@@ -22,11 +22,17 @@ public class GetComments
     public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req)
     {
         var slug = req.Query["slug"];
+        string slugValue = slug.ToString();
         var commentsContainer = _cosmosClient.GetContainer("radumitreadb","comments");
         
-        QueryDefinition query = new QueryDefinition("SELECT * FROM c WHERE c.slug = @slug").WithParameter("@slug", slug);
+        QueryDefinition query = new QueryDefinition("SELECT * FROM c WHERE c.slug = @slug").WithParameter("@slug", slugValue);
 
-        var iterator = commentsContainer.GetItemQueryIterator<Comment>(query);
+        var queryOptions = new QueryRequestOptions
+        {
+            PartitionKey = new PartitionKey(slugValue.ToString())
+        };
+
+        var iterator = commentsContainer.GetItemQueryIterator<Comment>(query, requestOptions: queryOptions);
 
         var comments = new List<Comment>();
 
