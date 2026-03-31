@@ -1,10 +1,19 @@
+using Newtonsoft.Json;
+
 public class Comment
 {
-  public required string id { get; set; }                                                  
-  public required string slug { get; set; }                                                
-  public string? author { get; set; }
-  public string? email { get; set; }                                                       
-  public string? message { get; set; }
-  public bool? approved { get; set; }                                              
-  public DateTime createdon { get; set; }
+  [JsonProperty("id")]
+  public required string Id { get; set; }
+  [JsonProperty("slug")]
+  public required string Slug { get; set; }
+  [JsonProperty("author")]
+  public string? Author { get; set; }
+  [JsonProperty("email")]
+  public string? Email { get; set; }
+  [JsonProperty("message")]
+  public string? Message { get; set; }
+  [JsonProperty("approved")]
+  public bool? Approved { get; set; }
+  [JsonProperty("createdon")]
+  public DateTime? CreatedAt { get; set; }
 }
