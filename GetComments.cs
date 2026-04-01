@@ -25,7 +25,7 @@ public class GetComments
         string slugValue = slug.ToString();
         var commentsContainer = _cosmosClient.GetContainer("radumitreadb","comments");
         
-        QueryDefinition query = new QueryDefinition("SELECT * FROM c WHERE c.slug = @slug").WithParameter("@slug", slugValue);
+        QueryDefinition query = new QueryDefinition("SELECT * FROM c WHERE c.slug = @slug and c.approved = true").WithParameter("@slug", slugValue);
 
         var queryOptions = new QueryRequestOptions
         {
